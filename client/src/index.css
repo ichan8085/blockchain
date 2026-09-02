@@ -1,0 +1,6 @@
+html {
+    background-color: #f4f4f4;
+    background-image: radial-gradient(#ced0d3 1px, transparent 1px); /* Warna titik dan ukuran */
+    background-size: 20px 20px; /* Jarak antar titik */
+    scroll-behavior: smooth;
+}

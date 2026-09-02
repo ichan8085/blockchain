@@ -1,0 +1,165 @@
+/* Container */
+
+.input-field {
+  position: relative;
+  width: 100%;
+}
+
+/* ========================= */
+/* Input Text */
+/* ========================= */
+
+.input-field__input {
+  width: 100%;
+  padding: 18px 14px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition:
+    border-color .25s,
+    box-shadow .25s;
+}
+
+/* Focus */
+
+.input-field__input:focus {
+  border-color: #2563eb;
+  box-shadow:0 0 0 3px rgba(37,99,235,.15);
+}
+
+/* Floating Label */
+
+.input-field__label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  padding: 0 4px;
+  color: #6b7280;
+  pointer-events: none;
+  transition: .2s;
+}
+
+/* Saat focus */
+
+.input-field__input:focus
++ .input-field__label,
+.input-field__input:not(:placeholder-shown)
++ .input-field__label{
+  top: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+/* ========================= */
+/* File Input */
+/* ========================= */
+
+.file-label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:600;
+  color:#374151;
+}
+
+.file-input{
+  width:100%;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  background:#fff;
+  cursor:pointer;
+  box-sizing:border-box;
+  transition:.25s;
+  margin-bottom:20px;
+}
+
+.file-input:hover{
+  border-color:#2563eb;
+}
+
+.file-input:focus{
+  outline:none;
+  border-color:#2563eb;
+  box-shadow:0 0 0 3px rgba(37,99,235,.15);
+}
+
+/* ========================= */
+/* Input dengan Icon (search trigger) */
+/* ========================= */
+
+.input-field__input--with-icon {
+  padding-right: 40px; /* beri ruang untuk icon di kanan */
+}
+
+.input-field__icon-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  padding: 4px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.input-field__icon-btn:hover:not(:disabled) {
+  color: #2563eb;
+  background: rgba(37, 99, 235, .08);
+}
+
+.input-field__icon-btn:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.input-field__icon-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ========================= */
+/* Select Dropdown */
+/* ========================= */
+
+.input-field__select {
+  cursor: pointer;
+  appearance: none; /* hilangkan tampilan default browser */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
+
+/* Label select selalu di posisi float (karena select tidak punya placeholder) */
+.input-field--select .input-field__label {
+  top: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.input-field__select:focus + .input-field__label {
+  color: #2563eb;
+}
+
+.input-field__input[readonly] {
+  background-color: #f3f4f6;
+  color: #6b7280;
+  cursor: not-allowed;
+}
