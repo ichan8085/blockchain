@@ -135,7 +135,7 @@ function OperatorPage() {
       document.body.removeChild(link);
     } catch (error) {
       console.error(error);
-      toast.error("Gagal mengunduh sertifikat");
+      toast.error("Gagal mengunduh ijazah/Sertifikat");
     }
   };
 
@@ -143,7 +143,7 @@ function OperatorPage() {
     <>
     <Navbar label="OPERATOR" />
     <div className="containerStyle">
-      <Card title="FORM INPUT SERTIFIKAT" subtitle="Masukkan data sertifikat yang akan disimpan ke Blockchain">
+      <Card title="FORM INPUT IJAZAH/SERTIFIKAT" subtitle="Masukkan data ijazah/sertifikat yang akan disimpan ke Blockchain">
         <form onSubmit={handleSubmit}>
           <div className="formGrid">
 
@@ -223,7 +223,7 @@ function OperatorPage() {
           />
 
           <Input
-              label="Nomor Sertifikat"
+              label="Nomor Ijazah/Sertifikat"
               name="nomorIjazah"
               value={formData.nomorIjazah}
               onChange={handleChange}
@@ -244,7 +244,7 @@ function OperatorPage() {
 
           <Input
               type="file"
-              label="Upload Dokumen Sertifikat"
+              label="Upload Foto Ijazah/Sertifikat"
               name="dokumen"
               accept=".pdf,.jpg,.jpeg,.png"
               onChange={(e)=>setFile(e.target.files[0])}
@@ -255,133 +255,32 @@ function OperatorPage() {
             type="submit"
             variant="success"
           >
-            Simpan Sertifikat
+            Simpan Ijazah/Sertifikat
           </Button>
         </form>
        </Card>
 
         {qrValue && (
           <>
-            {/* Preview Sertifikat */}
+            {/* Preview Ijazah */}
             <div ref={certificateRef} className="certificatePreview">
-              <div className="certificateHeader">
-                <h1>SERTIFIKAT KELULUSAN</h1>
+              <div className="qrSection">
+                <div className="qrText">
+                  <p>Scan QR Code untuk validasi ijazah/sertifikat</p>
                   <p>
-                    <strong>Nomor Batch</strong>: {formData.nomorBatch}
+                    QR Code : {formData.namaMahasiswa}
                   </p>
-              </div>
 
-              <div className="certificateBody">
-
-                <p>
-                  <strong>Nomor Sertifikat: {formData.nomorIjazah}</strong>
-                </p>
-
-                <p>
-                  Berdasarkan Keputusan Menteri Agama Republik Indoneisia Nomor 53 Tahun 2021 tanggal 6 januari 2021 tentang
-                  <br />
-                  Izin Penyelenggaraan Program Studi Pendidikan Profesi Guru, 
-                  <br />
-                  Rektor Universitas Islam Negeri Sunan Gunung Djati menyatakan bahwa:
-                </p>
-
-                <h2>{formData.namaMahasiswa}</h2>
-
-                <p>
-                  Nomor Induk Mahasisiwa:{formData.nim}
-                  <br/>
-                  Perguruan Tinggi: {formData.perguruanTinggi}
-                  <br />
-                  {formData.keterangan && (
-                    <p>
-                      Keterangan: {formData.keterangan}
-                    </p>
-                  )}
-                </p>
-
-                <p>
-                  telah memenuhi syarat penyelesaian Pnedidikan Profesi Guru dan Lulus Uji Kompetensi Mahasiswa Pendidikan Profesi Guru.
-                  <br/>
-                  Kepadanya diberikan gelar Guru Pofesional (Gr.) dalam bidang keahlian {formData.programStudi}
-                  <br />
-                  sesuai hak dan kewajiban yang melekat pada gelar tersebut.
-                </p>
-
-
-                  <div className="certificateInfo">
-
-                    {/* KIRI */}
-                    <div className="leftSign">
-                      <p>Rektor,</p>
-
-                      <strong>
-                        Prof. Dr. H. Rosihon Anwar, M.Ag.
-                      </strong>
-
-                      <span>NIP 196909151995031001</span>
-                    </div>
-
-                    {/* TENGAH */}
-                    <div className="centerSign">
-
-                        <div className="centerContent">
-
-                            {ipfsHash && (
-                                <img
-                                    src={`${import.meta.env.VITE_IPFS}${ipfsHash}`}
-                                    alt="Foto Peserta"
-                                />
-                            )}
-
-                            <div className="qrSection">
-
-                                <div className="qrContainer">
-                                    <QRCode
-                                        value={qrValue}
-                                        size={110}
-                                    />
-                                </div>
-
-                              <div className="qrText">
-                                <p>Scan QR Code untuk validasi sertifikat</p>
-                                <p>
-                                  Generate : {formData.tanggalGenerate}
-                                </p>
-
-                                <p>
-                                  Export : {formData.tanggalExport}
-                                </p>
-
-                                <p>
-                                  Operator : {formData.operatorPT}
-                                </p>
-                              </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    {/* KANAN */}
-                    <div className="rightSign">
-
-                      <p>
-                        Bandung,
-                        {" "}
-                        {formData.tanggalExport}
-                        <br/>
-                        Dekan,
-                      </p>
-
-                      <strong>
-                        H. Fakry Hamdani, M.Hum., M.Res., Ph.D.
-                      </strong>
-
-                      <span>NIP 198008242009121004</span>
-
-                    </div>
-
-                  </div>
+                  <p>
+                    Nomor Ijazah/Sertifikat Nasional : {formData.nomorIjazah}
+                  </p>
+                </div>
+                  <div className="qrContainer">
+                      <QRCode
+                          value={qrValue}
+                          size={110}
+                      />
+                </div>
 
               </div>
             </div>
@@ -391,7 +290,7 @@ function OperatorPage() {
                 variant="primary"
                 onClick={downloadCertificate}
               >
-                Download Sertifikat
+                Download Ijazah/Sertifikat
               </Button>
             </div>
           </>

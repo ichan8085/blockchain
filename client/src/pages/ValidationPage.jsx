@@ -41,7 +41,7 @@ function ValidationPage() {
         setScanResult(res.data);
         setShowScanner(false);
       } catch (err) {
-        toast.error("Sertifikat tidak ditemukan!");
+        toast.error("Ijazah/Sertifikat tidak ditemukan!");
       }
     };
 
@@ -65,7 +65,7 @@ function ValidationPage() {
   <>
     <Navbar label="USER MENU" />
     <div className="containerStyle">
-      <Card title="VERIFIKASI SERTIFIKAT" subtitle="Pindai QR Code">
+      <Card title="VERIFIKASI IJAZAH/SERTIFIKAT" subtitle="Pindai QR Code">
 
         {!showScanner && (
           <Button
@@ -113,7 +113,7 @@ function ValidationPage() {
           }}
         >
           <h3 style={{ color: "green", marginBottom: "20px" }}>
-          Sertifikat Terdaftar
+          Ijazah/Sertifikat Terdaftar
           </h3>
 
           <p>
@@ -122,7 +122,7 @@ function ValidationPage() {
           </p>
 
           <p>
-            <strong>Nomor Sertifikat:</strong>{" "}
+            <strong>Nomor Ijazah/Sertifikat:</strong>{" "}
             {scanResult.nomorIjazah}
           </p>
 
@@ -176,7 +176,7 @@ function ValidationPage() {
           )}
 
           <p>
-            <strong>Hash ID Sertifikat:</strong>
+            <strong>Hash ID Ijazah/Sertifikat:</strong>
             {scanResult.fileHash}
           </p>
 

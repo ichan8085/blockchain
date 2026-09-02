@@ -63,7 +63,7 @@ function ListDataPage() {
       document.body.removeChild(link);
     } catch (error) {
       console.error(error);
-      toast.error("Gagal mengunduh sertifikat");
+      toast.error("Gagal mengunduh ijazah/sertifikat.");
     }
   };
 
@@ -85,15 +85,15 @@ function ListDataPage() {
 
       <div className="listPageContainer">
         <Card
-          title="DATA SERTIFIKAT"
-          subtitle="Data sertifikat PPG yang terdaftar"
+          title="DATA IJAZAH/SERTIFIKAT"
+          subtitle="Data ijazah/sertifikat yang terdaftar"
         >
           {/* Search */}
           <div className="listSearchWrapper">
             <input
               type="text"
               className="listSearchInput"
-              placeholder="Cari Nomor Sertifikat, Nama, NIM, Program Studi..."
+              placeholder="Cari Nomor Ijazah/Sertifikat, Nama, NIM, Program Studi..."
               value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value);
@@ -114,14 +114,14 @@ function ListDataPage() {
                 <table className="listTable">
                   <thead>
                     <tr>
-                      <th>Nomor Sertifikat</th>
+                      <th>Nomor Ijazah/Sertifikat</th>
                       <th>Nama</th>
                       <th>NIM</th>
                       <th>Program Studi</th>
                       <th>Perguruan Tinggi</th>
                       <th>Tanggal Generate</th>
                       <th>Operator PT</th>
-                      <th>Sertifikat</th>
+                      <th>Ijazah/Sertifikat</th>
                     </tr>
                   </thead>
 
@@ -140,7 +140,7 @@ function ListDataPage() {
                             className="previewButton"
                             onClick={() => setSelectedCertificate(item)}
                         >
-                            Lihat Sertifikat
+                            Lihat Ijazah/Sertifikat
                         </button>
                         </td>
                       </tr>
@@ -156,127 +156,30 @@ function ListDataPage() {
                   <div className="previewModal">
 
                     <div ref={certificateRef} className="certificatePreview">
-                      <div className="certificateHeader">
-                        <h1>SERTIFIKAT KELULUSAN</h1>
-                          <p>
-                            <strong>Nomor Batch</strong>: {selectedCertificate.nomorBatch}
-                          </p>
-                      </div>
-
-                      <div className="certificateBody">
-
-                        <p>
-                          <strong>Nomor Sertifikat: {selectedCertificate.nomorIjazah}</strong>
-                        </p>
-
-                        <p>
-                          Berdasarkan Keputusan Menteri Agama Republik Indoneisia Nomor 53 Tahun 2021 tanggal 6 januari 2021 tentang
-                          <br />
-                          Izin Penyelenggaraan Program Studi Pendidikan Profesi Guru, 
-                          <br />
-                          Rektor Universitas Islam Negeri Sunan Gunung Djati menyatakan bahwa:
-                        </p>
-
-                        <h2>{selectedCertificate.namaMahasiswa}</h2>
-
-                        <p>
-                          Nomor Induk Mahasisiwa:{selectedCertificate.nim}
-                          <br/>
-                          Perguruan Tinggi: {selectedCertificate.perguruanTinggi}
-                          <br />
-                          {selectedCertificate.keterangan && (
-                            <span>
-                              Keterangan: {selectedCertificate.keterangan}
-                            </span>
-                          )}
-                        </p>
-
-                        <p>
-                          telah memenuhi syarat penyelesaian Pnedidikan Profesi Guru dan Lulus Uji Kompetensi Mahasiswa Pendidikan Profesi Guru.
-                          <br/>
-                          Kepadanya diberikan gelar Guru Pofesional (Gr.) dalam bidang keahlian {selectedCertificate.programStudi}
-                          <br />
-                          sesuai hak dan kewajiban yang melekat pada gelar tersebut.
-                        </p>
-
-
-                          <div className="certificateInfo">
-
-                            {/* KIRI */}
-                            <div className="leftSign">
-                              <p>Rektor,</p>
-
-                              <strong>
-                                Prof. Dr. H. Rosihon Anwar, M.Ag.
-                              </strong>
-
-                              <span>NIP 196909151995031001</span>
-                            </div>
-
-                            {/* TENGAH */}
-                            <div className="centerSign">
-
-                                <div className="centerContent">
-
-                                  <img
-                                      src={`${import.meta.env.VITE_IPFS}${selectedCertificate.ipfsHash}`}
-                                      alt="Foto Peserta"
-                                  />
-
-                                    <div className="qrSection">
-
-                                        <div className="qrContainer">
-                                            <QRCode
-                                                value={selectedCertificate.nomorIjazah}
-                                                size={110}
-                                            />
-                                        </div>
-
-                                      <div className="qrText">
-                                        <p>Scan QR Code untuk validasi sertifikat</p>
-                                        <p>
-                                          Generate : {selectedCertificate.tanggalGenerate}
-                                        </p>
-
-                                        <p>
-                                          Export : {selectedCertificate.tanggalExport}
-                                        </p>
-
-                                        <p>
-                                          Operator : {selectedCertificate.operatorPT}
-                                        </p>
-                                      </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            {/* KANAN */}
-                            <div className="rightSign">
-
-                              <p>Bandung,</p>
-                              <br/>
-                              <p>Dekan,</p>
-
-                              <strong>
-                                H. Fakry Hamdani, M.Hum., M.Res., Ph.D.
-                              </strong>
-
-                              <span>NIP 198008242009121004</span>
-
-                            </div>
+                      <div className="qrSection">
+                          <p>QR Code: {selectedCertificate.namaMahasiswa}</p>
+                          <div className="qrContainer">
+                              <QRCode
+                                  value={selectedCertificate.nomorIjazah}
+                                  size={110}
+                              />
                           </div>
 
+                          <div className="qrText">
+                            <p>
+                              <strong>Nomor Ijazah/Sertifikat Nasional: {selectedCertificate.nomorIjazah}</strong>
+                            </p>
+                          </div>
                       </div>
                     </div>
+                    {/* === */}
 
                     <div style={{marginBottom: "20px"}}>
                       <Button
                         variant="primary"
                         onClick={downloadCertificate}
                       >
-                        Download Sertifikat
+                        Download Ijazah/Sertifikat
                       </Button>
                     </div>
 
